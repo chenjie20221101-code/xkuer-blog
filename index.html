@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior:smooth;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Xkuer Technical Blog</title>
-<meta name="description" content="Mini SAS, Crypto Seed Backup Plate, Industrial Ethernet M8 M12 Cable Technical Blog">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -14,193 +17,918 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#f4f8ff;
-color:#222;
+font-family:'Inter',sans-serif;
+background:#030712;
+color:white;
+overflow-x:hidden;
 }
 
-a{
-text-decoration:none;
+/* ==========================
+BACKGROUND
+========================== */
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(0,200,255,.18),transparent 30%),
+radial-gradient(circle at 80% 30%,rgba(0,120,255,.18),transparent 30%),
+radial-gradient(circle at 50% 80%,rgba(0,255,255,.12),transparent 30%);
+z-index:-2;
 }
+
+.grid-bg{
+position:fixed;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
+background-size:60px 60px;
+animation:gridMove 20s linear infinite;
+z-index:-1;
+}
+
+@keyframes gridMove{
+0%{transform:translateY(0);}
+100%{transform:translateY(60px);}
+}
+
+/* ==========================
+HERO
+========================== */
 
 .hero{
-background:linear-gradient(135deg,#0047ff,#0a78ff);
-padding:100px 20px;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
-color:#fff;
+padding:20px;
+position:relative;
+}
+
+.hero-content{
+max-width:1200px;
 }
 
 .hero h1{
-font-size:56px;
-margin-bottom:20px;
+font-size:clamp(60px,8vw,130px);
+font-weight:800;
+line-height:1;
+background:linear-gradient(
+135deg,
+#fff,
+#d8f3ff,
+#53dfff,
+#fff
+);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:
+0 0 30px rgba(0,255,255,.3),
+0 0 80px rgba(0,180,255,.2);
+animation:float 6s ease-in-out infinite;
 }
 
 .hero p{
-font-size:20px;
-opacity:.9;
+margin-top:25px;
+font-size:22px;
+color:#b8d8ff;
+letter-spacing:3px;
 }
 
+@keyframes float{
+50%{
+transform:translateY(-15px);
+}
+}
+
+.hero-btns{
+margin-top:50px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 34px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+color:white;
+border:1px solid rgba(255,255,255,.15);
+
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+
+transition:.4s;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+box-shadow:
+0 0 25px rgba(0,220,255,.4);
+}
+
+/* ==========================
+SECTION
+========================== */
+
 .section{
-max-width:1400px;
-margin:auto;
-padding:70px 20px;
+padding:120px 8%;
 }
 
 .section-title{
+font-size:48px;
 text-align:center;
-font-size:38px;
-margin-bottom:50px;
-color:#0a4fff;
+margin-bottom:15px;
 }
 
-.category-grid{
+.section-sub{
+text-align:center;
+color:#8fb7df;
+margin-bottom:80px;
+}
+
+/* ==========================
+CATEGORY
+========================== */
+
+.category{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+margin-bottom:120px;
+}
+
+.category.reverse{
+direction:rtl;
+}
+
+.category.reverse *{
+direction:ltr;
+}
+
+.category-img{
+overflow:hidden;
+border-radius:30px;
+}
+
+.category-img img{
+width:100%;
+display:block;
+transition:.6s;
+}
+
+.category-img:hover img{
+transform:scale(1.08);
+}
+
+.glass{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:30px;
+padding:40px;
+}
+
+.category h3{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.category p{
+color:#b8d8ff;
+line-height:1.8;
+}
+
+/* ==========================
+BLOG
+========================== */
+
+.blog-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:30px;
 }
 
-.category-card{
-background:#fff;
-border-radius:24px;
+.blog-card{
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.35s;
+transition:.4s;
 }
 
-.category-card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,0,0,.15);
+.blog-card:hover{
+transform:translateY(-10px);
 }
 
-.category-card img{
+.blog-card img{
 width:100%;
-height:240px;
+height:250px;
 object-fit:cover;
-display:block;
 }
 
-.category-content{
+.blog-info{
 padding:25px;
 }
 
-.category-content h3{
-font-size:28px;
-margin-bottom:10px;
-}
-
-.category-content p{
-color:#666;
-line-height:1.7;
-margin-bottom:20px;
-}
-
-.btn{
+.tag{
 display:inline-block;
-background:#0a4fff;
-color:#fff;
-padding:12px 24px;
-border-radius:10px;
-font-weight:600;
+padding:6px 14px;
+background:#00cfff22;
+border-radius:30px;
+font-size:13px;
+margin-bottom:15px;
+color:#72eaff;
 }
 
-.latest-posts{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-}
-
-.post-card{
-background:#fff;
-padding:25px;
-border-radius:18px;
-box-shadow:0 5px 20px rgba(0,0,0,.06);
-transition:.3s;
-}
-
-.post-card:hover{
-transform:translateY(-5px);
-}
-
-.post-card h4{
+.blog-title{
 font-size:22px;
 margin-bottom:10px;
-color:#111;
 }
 
-.post-card p{
-color:#666;
-line-height:1.6;
+.blog-desc{
+color:#9ab9d9;
 }
 
-.footer{
-background:#0d1726;
-color:#fff;
+/* ==========================
+PRODUCTS
+========================== */
+
+.carousel{
+display:flex;
+gap:30px;
+overflow:auto;
+padding-bottom:20px;
+}
+
+.carousel::-webkit-scrollbar{
+height:8px;
+}
+
+.carousel::-webkit-scrollbar-thumb{
+background:#00d5ff;
+border-radius:20px;
+}
+
+.product{
+min-width:300px;
+}
+
+.product img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.product-body{
+padding:25px;
 text-align:center;
-padding:40px 20px;
-margin-top:80px;
 }
 
-@media(max-width:990px){
+.product-title{
+font-size:20px;
+}
 
-.category-grid{
+/* ==========================
+FOOTER
+========================== */
+
+footer{
+padding:80px 8%;
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(20px);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:50px;
+}
+
+.footer-title{
+margin-bottom:20px;
+font-size:22px;
+}
+
+.footer-text{
+color:#9ab9d9;
+line-height:2;
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:900px){
+
+.category{
 grid-template-columns:1fr;
 }
 
-.latest-posts{
+.blog-grid{
+grid-template-columns:1fr;
+}
+
+.footer-grid{
 grid-template-columns:1fr;
 }
 
 .hero h1{
-font-size:36px;
+font-size:60px;
 }
 
-.section-title{
-font-size:28px;
 }
 
-.category-card img{
-height:220px;
+
+
+body{background:#06111f;min-height:100vh;}
+.floating-actions{
+position:fixed;
+top:24px;
+left:24px;
+display:flex;
+gap:12px;
+z-index:10000;
+}
+
+.float-btn{
+width:140px;
+height:54px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(10,20,35,.55);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,.08);
+color:#fff;
+text-decoration:none;
+font-size:20px;
+position:relative;
+overflow:hidden;
+transition:all .35s ease;
+box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.float-btn span{
+position:absolute;
+left:70px;
+opacity:0;
+white-space:nowrap;
+font-size:13px;
+transition:.35s;
+}
+
+.float-btn:hover{
+width:140px;
+justify-content:flex-start;
+padding-left:18px;
+background:rgba(58,160,255,.12);
+box-shadow:0 0 30px rgba(58,160,255,.35);
+}
+
+.float-btn:hover span{
+opacity:1;
+left:55px;
+}
+
+.float-btn::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+transform:translateX(-100%);
+}
+
+.float-btn:hover::before{
+animation:sweep .8s ease;
+}
+
+@keyframes sweep{
+from{transform:translateX(-100%)}
+to{transform:translateX(100%)}
+}
+
+.float-btn:hover{
+transform:translateY(-3px) scale(1.05);
+}
+
+
+.store-modal{
+position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(12px);
+display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;
+transition:.45s ease;z-index:20000;
+}
+.store-modal.show{opacity:1;visibility:visible;}
+.store-panel{
+width:720px;max-width:90%;padding:30px;border-radius:28px;
+background:linear-gradient(135deg,rgba(10,20,35,.96),rgba(20,35,55,.96));
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 30px 80px rgba(0,150,255,.25),0 0 120px rgba(0,150,255,.08);
+transform:translateY(40px) scale(.9);
+transition:.45s cubic-bezier(.22,1,.36,1);
+}
+.store-modal.show .store-panel{transform:translateY(0) scale(1);}
+.store-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
+.store-header h3{font-size:32px;background:linear-gradient(90deg,#fff,#80dfff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.store-header button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;}
+.store-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.store-card{
+height:170px;border-radius:24px;text-decoration:none;color:#fff;display:flex;
+flex-direction:column;justify-content:center;align-items:center;gap:12px;
+background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(16px);transition:.4s;
+}
+.store-card span{font-size:42px;}
+.store-card:first-child{
+background:linear-gradient(135deg,#34a8e8 0%, #5a8df3 55%, #37d8c9 100%);
+border:1px solid rgba(120,220,255,.75);
+color:#fff;
+box-shadow:0 0 35px rgba(70,180,255,.35);
+}
+.store-card:first-child:hover{
+box-shadow:0 25px 60px rgba(58,160,255,.35),0 0 40px rgba(0,255,208,.18);
+}
+.store-card:hover{
+transform:translateY(-12px) scale(1.04);
+box-shadow:0 20px 50px rgba(0,150,255,.25);
+background:rgba(58,160,255,.12);
+}
+
+
+.store-panel{
+background:linear-gradient(135deg,#16102e,#11294a,#0d3a45)!important;
+animation:panelFloat 4s ease-in-out infinite;
+}
+.store-modal.show .store-panel{
+animation:modalPop .55s cubic-bezier(.22,1,.36,1), panelFloat 4s ease-in-out infinite .55s;
+}
+.store-card{
+position:relative;
+overflow:hidden;
+}
+.store-card::before{
+content:'';
+position:absolute;
+inset:-40%;
+background:linear-gradient(45deg,transparent,rgba(255,255,255,.18),transparent);
+transform:translateX(-120%) rotate(25deg);
+}
+.store-card:hover::before{
+animation:shine 1s ease;
+}
+.amazon-card{
+background:linear-gradient(135deg,#ff9900,#ffb84d)!important;
+}
+.ebay-card{
+background:linear-gradient(135deg,#e53238,#0064d2)!important;
+}
+.noon-card{
+background:linear-gradient(135deg,#ffd400,#ffef85)!important;
+color:#222!important;
+}
+@keyframes shine{
+to{transform:translateX(220%) rotate(25deg);}
+}
+@keyframes modalPop{
+0%{opacity:0;transform:scale(.7) rotateX(15deg);}
+100%{opacity:1;transform:scale(1) rotateX(0);}
+}
+@keyframes panelFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+}
+
+
+.lang-panel{
+background:linear-gradient(135deg,#0f1f35,#223e6d,#1fd0c0)!important;
+}
+.lang-card{
+animation:cardFloat 3s ease-in-out infinite;
+transform-style:preserve-3d;
+}
+.lang-card:nth-child(2){animation-delay:.2s;}
+.lang-card:nth-child(3){animation-delay:.4s;}
+.lang-card:nth-child(4){animation-delay:.6s;}
+
+.lang-card:hover{
+transform:translateY(-15px) scale(1.08) rotateX(8deg) rotateY(-8deg);
+box-shadow:0 25px 60px rgba(0,180,255,.45);
+}
+
+.lang-card span{
+transition:.5s;
+}
+.lang-card:hover span{
+transform:scale(1.35) rotate(12deg);
+}
+
+.lang-card::after{
+content:'';
+position:absolute;
+inset:-2px;
+border-radius:24px;
+background:linear-gradient(45deg,#4fd1ff,#7f8cff,#37d8c9,#4fd1ff);
+background-size:300% 300%;
+opacity:0;
+z-index:-1;
+animation:borderFlow 4s linear infinite;
+}
+.lang-card:hover::after{
+opacity:1;
+}
+
+@keyframes cardFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+}
+
+@keyframes borderFlow{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
+
+.lang-card span{
+width:72px;
+height:72px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:20px;
+font-size:30px;
+font-weight:700;
+background:linear-gradient(135deg,rgba(79,209,255,.18),rgba(127,140,255,.18));
+border:1px solid rgba(120,220,255,.35);
+backdrop-filter:blur(12px);
+box-shadow:
+0 0 20px rgba(79,209,255,.25),
+inset 0 0 20px rgba(255,255,255,.05);
+}
+.lang-card:hover span{
+transform:scale(1.15) rotateY(180deg);
+box-shadow:
+0 0 35px rgba(79,209,255,.55),
+0 0 70px rgba(55,216,201,.25);
+}
+
+
+.scroll-down{
+  margin-top:25px;
+  display:flex;
+  justify-content:center;
+}
+
+.scroll-down .arrow{
+  font-size:28px;
+  color:#86d7ff;
+  animation:bounceArrow 1.4s infinite;
+  text-shadow:0 0 12px rgba(134,215,255,.8);
+  opacity:0.9;
+}
+
+@keyframes bounceArrow{
+  0%,100%{
+    transform:translateY(0);
+    opacity:0.4;
+  }
+  50%{
+    transform:translateY(12px);
+    opacity:1;
+  }
+}
+
+
+
+
+html{scroll-behavior:smooth;}
+.glass{
+position:relative;
+overflow:hidden;
+transition:all .55s cubic-bezier(.22,1,.36,1);
+transform-style:preserve-3d;
+}
+.glass::before{
+content:'';position:absolute;top:-150%;left:-150%;width:300%;height:300%;
+background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.12) 50%,transparent 60%);
+transform:rotate(25deg);opacity:0;transition:.8s;pointer-events:none;
+}
+.glass:hover::before{opacity:1;animation:shineCard 1.4s ease;}
+.glass:hover{
+transform:translateY(-15px) scale(1.04) rotateX(5deg) rotateY(-5deg);
+border-color:rgba(79,209,255,.5);
+box-shadow:0 25px 60px rgba(0,180,255,.22),0 0 60px rgba(79,209,255,.15),inset 0 0 40px rgba(255,255,255,.05);
+}
+@keyframes shineCard{
+0%{transform:translateX(-100%) rotate(25deg);}
+100%{transform:translateX(100%) rotate(25deg);}
+}
+.glass h3,.product-title{transition:.5s;}
+.glass:hover h3,.product:hover .product-title{
+transform:translateY(-5px);
+background:linear-gradient(90deg,#fff,#4fd1ff,#7fffd4);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 20px rgba(79,209,255,.55);
+}
+.glass p{transition:.5s;}
+.glass:hover p{color:#fff;}
+.category-img img,.product img{transition:.8s cubic-bezier(.22,1,.36,1);}
+.glass:hover img,.product:hover img{transform:scale(1.12);}
+.product{animation:productFloat 5s ease-in-out infinite;}
+.product:nth-child(2){animation-delay:.8s;}
+.product:nth-child(3){animation-delay:1.6s;}
+@keyframes productFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+}
+
+
+@media(max-width:768px){
+.floating-actions{
+top:10px!important;
+left:10px!important;
+display:grid!important;
+grid-template-columns:repeat(2,46px)!important;
+gap:8px!important;
+}
+.float-btn{
+width:46px!important;
+height:46px!important;
+min-width:46px!important;
+border-radius:12px!important;
+font-size:16px!important;
+padding:0!important;
+justify-content:center!important;
+}
+.float-btn span{display:none!important;}
+.float-btn:hover{
+width:46px!important;
+padding:0!important;
+transform:scale(1.08)!important;
 }
 }
+
 </style>
 </head>
+
 <body>
 
+
+<div class="floating-actions">
+<a class="float-btn" href="https://www.xkuer.com">← <span>Back</span></a>
+<a class="float-btn" href="#">⌂ <span>Home</span></a>
+<a class="float-btn" href="javascript:void(0)" id="shopBtn">◈ <span>Shop</span></a>
+<a class="float-btn" href="javascript:void(0)" id="langBtn">EN <span>Language</span></a>
+</div>
+
+
+
+
+<div class="store-modal" id="storeModal">
+<div class="store-panel">
+<div class="store-header">
+<h3>Xkuer Store</h3>
+<button id="closeStore">✕</button>
+</div>
+<div class="store-grid">
+<a href="https://shop.xkuer.com" class="store-card" target="_blank"><span>🔷</span><h4>Xkuer Store</h4></a>
+<div class="store-card amazon-card"><span>🛒</span><h4>Amazon</h4></div>
+<div class="store-card ebay-card"><span>🏷</span><h4>eBay</h4></div>
+<div class="store-card noon-card"><span>☀</span><h4>Noon</h4></div>
+</div>
+</div>
+</div>
+
+<script>
+const shopBtn=document.getElementById('shopBtn');
+const modal=document.getElementById('storeModal');
+const closeBtn=document.getElementById('closeStore');
+shopBtn?.addEventListener('click',()=>modal.classList.add('show'));
+closeBtn?.addEventListener('click',()=>modal.classList.remove('show'));
+modal?.addEventListener('click',(e)=>{if(e.target===modal){modal.classList.remove('show');}});
+</script>
+
+<div class="store-modal" id="langModal">
+<div class="store-panel lang-panel">
+<div class="store-header">
+<h3>Language</h3>
+<button id="closeLang">✕</button>
+</div>
+<div class="store-grid">
+<a href="PRODUCTS.html" class="store-card lang-card"><span>⬢</span><h4>English</h4></a>
+<a href="PRODUCTS_cn.html" class="store-card lang-card"><span>◈</span><h4>简体中文</h4></a>
+<a href="PRODUCTS_tw.html" class="store-card lang-card"><span>⬡</span><h4>繁體中文</h4></a>
+<a href="PRODUCTS_jp.html" class="store-card lang-card"><span>✦</span><h4>日本語</h4></a>
+</div>
+</div>
+</div>
+
+<script>
+const langBtn=document.getElementById('langBtn');
+const langModal=document.getElementById('langModal');
+const closeLang=document.getElementById('closeLang');
+
+langBtn?.addEventListener('click',()=>langModal.classList.add('show'));
+closeLang?.addEventListener('click',()=>langModal.classList.remove('show'));
+langModal?.addEventListener('click',(e)=>{
+ if(e.target===langModal){langModal.classList.remove('show');}
+});
+</script>
+
+
+
+<div class="grid-bg"></div>
+
+<!-- HERO -->
+
 <section class="hero">
+
+<div class="hero-content">
+
 <h1>Xkuer Technical Blog</h1>
-<p>Mini SAS · Crypto Seed Backup · Industrial Ethernet</p>
+
+<p>
+Mini SAS • Seed Backup Plate • Industrial Ethernet
+</p>
+
+<div class="hero-btns">
+<a href="#articles" class="btn">Explore Articles</a>
+<a href="#products" class="btn">View Products</a>
+</div>
+
+</div>
+
 </section>
+
+<!-- CATEGORY -->
 
 <section class="section">
 
-<h2 class="section-title">Categories</h2>
+<h2 class="section-title">
+Technology Ecosystem
+</h2>
 
-<div class="category-grid">
+<p class="section-sub">
+Engineering Reliable Connectivity For Modern Infrastructure
+</p>
 
-<div class="category-card">
-<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200" alt="Mini SAS">
-<div class="category-content">
+<div class="category">
+
+<div class="category-img">
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31">
+</div>
+
+<div class="glass">
 <h3>Mini SAS</h3>
-<p>Mini SAS connector guides, compatibility charts, storage architecture and server interconnect tutorials.</p>
-<a href="mini-sas.html" class="btn">Explore</a>
-</div>
+<p>
+High-speed server interconnect solutions for storage systems, AI infrastructure and modern data centers.
+</p>
 </div>
 
-<div class="category-card">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200" alt="Seed Backup">
-<div class="category-content">
+</div>
+
+<div class="category reverse">
+
+<div class="category-img">
+<img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0">
+</div>
+
+<div class="glass">
 <h3>Seed Backup Plate</h3>
-<p>Crypto seed phrase backup solutions, steel wallet guides and long-term digital asset protection.</p>
-<a href="seed-backup.html" class="btn">Explore</a>
+<p>
+Military-grade stainless steel backup solutions designed for long-term cryptocurrency security.
+</p>
+</div>
+
+</div>
+
+<div class="category">
+
+<div class="category-img">
+<img src="https://images.unsplash.com/photo-1563770660941-20978e870e26">
+</div>
+
+<div class="glass">
+<h3>M8 / M12 Industrial Ethernet</h3>
+<p>
+Industrial-grade networking technologies for automation, robotics and smart manufacturing.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ARTICLES -->
+
+<section class="section" id="articles">
+
+<h2 class="section-title">
+Latest Articles
+</h2>
+
+<div class="blog-grid">
+
+<div class="blog-card glass">
+
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+
+<div class="blog-info">
+
+<div class="tag">Mini SAS</div>
+
+<div class="blog-title">
+Understanding Mini SAS Architecture
+</div>
+
+<div class="blog-desc">
+Latest connectivity trends for enterprise storage systems.
+</div>
+
+</div>
+
+</div>
+
+<div class="blog-card glass">
+
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3">
+
+<div class="blog-info">
+
+<div class="tag">Industrial Ethernet</div>
+
+<div class="blog-title">
+Industrial Networking Guide
+</div>
+
+<div class="blog-desc">
+M12 Ethernet deployment in industrial environments.
+</div>
+
+</div>
+
+</div>
+
+<div class="blog-card glass">
+
+<img src="https://images.unsplash.com/photo-1639322537228-f710d846310a">
+
+<div class="blog-info">
+
+<div class="tag">Seed Backup</div>
+
+<div class="blog-title">
+Protecting Digital Assets
+</div>
+
+<div class="blog-desc">
+How steel backup plates improve crypto security.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+<h2 class="section-title">
+Featured Products
+</h2>
+
+<div class="carousel">
+
+<div class="product glass">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
+<div class="product-body">
+<div class="product-title">Mini SAS Assemblies</div>
 </div>
 </div>
 
-<div class="category-card">
-<img src="https://images.unsplash.com/photo-1563770660941-10a636076f23?w=1200" alt="M8 M12 Ethernet">
-<div class="category-content">
-<h3>M8 / M12 Ethernet</h3>
-<p>Industrial Ethernet cables, M8 and M12 connector standards, sensor and automation applications.</p>
-<a href="m8-m12-ethernet.html" class="btn">Explore</a>
+<div class="product glass">
+<img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc">
+<div class="product-body">
+<div class="product-title">PCIe Gen5 Solutions</div>
+</div>
+</div>
+
+<div class="product glass">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+<div class="product-body">
+<div class="product-title">Industrial Ethernet</div>
 </div>
 </div>
 
@@ -208,40 +936,39 @@ height:220px;
 
 </section>
 
-<section class="section">
+<!-- FOOTER -->
 
-<h2 class="section-title">Latest Articles</h2>
+<footer>
 
-<div class="latest-posts">
+<div class="footer-grid">
 
-<div class="post-card">
-<h4>SFF-8087 vs SFF-8643: Complete Interface Guide</h4>
-<p>Understand the differences between SFF-8087 and SFF-8643 connectors in enterprise storage systems.</p>
+<div>
+<div class="footer-title">Xkuer</div>
+<div class="footer-text">
+Advanced Connectivity Solutions
+</div>
 </div>
 
-<div class="post-card">
-<h4>How to Protect Crypto Seed Phrases with Steel Backup</h4>
-<p>Best practices for protecting recovery phrases against fire, water and physical damage.</p>
+<div>
+<div class="footer-title">Quick Links</div>
+<div class="footer-text">
+Blog<br>
+Products<br>
+Support<br>
+Contact
+</div>
 </div>
 
-<div class="post-card">
-<h4>M12 X-Code vs D-Code Ethernet Connectors</h4>
-<p>Industrial networking connector comparison and application recommendations.</p>
+<div>
+<div class="footer-title">Contact</div>
+<div class="footer-text">
+support@xkuer.com<br>
+www.xkuer.com
+</div>
 </div>
 
-<div class="post-card">
-<h4>Choosing the Right Mini SAS Cable for Servers</h4>
-<p>Compatibility guide covering SFF-8087, SFF-8643, SFF-8644 and U.2 storage systems.</p>
 </div>
 
-</div>
-
-</section>
-
-<footer class="footer">
-<h3>Xkuer Technical Blog</h3>
-<p>Mini SAS • Seed Backup Plate • Industrial Ethernet M8/M12</p>
 </footer>
 
 </body>
-</html>
