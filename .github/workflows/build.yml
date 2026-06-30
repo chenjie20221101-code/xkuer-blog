@@ -15,9 +15,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: install
-        run: npm init -y
-
       - name: build json
         run: node scripts/build.js
 
