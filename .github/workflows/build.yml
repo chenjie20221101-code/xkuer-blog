@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout
+      - name: checkout repo
         uses: actions/checkout@v3
 
       - name: setup node
@@ -17,10 +17,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: install
-        run: npm install
+      - name: show files (debug)
+        run: ls -R
 
-      - name: build
+      - name: build json
         run: node scripts/build.js
 
       - name: commit result
