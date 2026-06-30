@@ -1,5 +1,8 @@
 name: build posts
 
+permissions:
+  contents: write   # ⭐关键修复
+
 on:
   push:
     branches: [main]
@@ -9,21 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: setup node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: show files (debug)
-        run: ls -R
 
       - name: build json
         run: node scripts/build.js
 
-      - name: commit result
+      - name: commit
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
